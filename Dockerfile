@@ -1,5 +1,5 @@
 # most steps taken from: https://stackoverflow.com/questions/60821697/how-to-build-openssl-for-arm-linux
-FROM debian:stretch
+FROM debian:buster
 
 ENV PATH=/root/.cargo/bin:$PATH
 
@@ -7,8 +7,8 @@ RUN apt-get update && apt-get -y install wget curl git make build-essential clan
 
 # cross compile OpenSSL
 # latest version can be found here: https://www.openssl.org/source/
-ENV OPENSSL_VERSION=openssl-1.0.2u
-ENV DOWNLOAD_SITE=https://www.openssl.org/source/old/1.0.2
+ENV OPENSSL_VERSION=openssl-1.1.1n
+ENV DOWNLOAD_SITE=https://www.openssl.org/source/old/1.1.1
 RUN wget $DOWNLOAD_SITE/$OPENSSL_VERSION.tar.gz && tar zxf $OPENSSL_VERSION.tar.gz
 RUN cd $OPENSSL_VERSION && ./Configure linux-armv4 --cross-compile-prefix=/usr/bin/arm-linux-gnueabihf- --prefix=/opt/openssl-arm --openssldir=/opt/openssl-arm -static && make install
 # This env var configures rust-openssl to use the cross compiled version

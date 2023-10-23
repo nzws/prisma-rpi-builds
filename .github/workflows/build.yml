@@ -6,6 +6,9 @@ on:
         description: "Commit on the given branch to build"
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: "ARMv7 engines build on tag ${{ github.event.inputs.tag }}"
@@ -14,7 +17,7 @@ jobs:
       - name: Checkout ${{ github.event.inputs.tag }}
         uses: actions/checkout@v2
         with:
-          repository: 'prisma/prisma-engines'
+          repository: "prisma/prisma-engines"
           ref: ${{ github.event.inputs.tag }}
 
       - uses: actions-rs/toolchain@v1
@@ -34,12 +37,12 @@ jobs:
         run: |-
           cat <<EOF > Cross.toml
             [target.armv7-unknown-linux-gnueabihf]
-            image = "pantharshit00/prisma-armv7-build-image:latest"
+            image = "nzws/prisma-armv7-build-image:latest"
           EOF
-      
+
       - name: List files for verification
         run: ls -al && cat Cross.toml
-          
+
       - uses: actions-rs/cargo@v1
         with:
           use-cross: true
