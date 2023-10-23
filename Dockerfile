@@ -14,10 +14,10 @@ RUN cd $OPENSSL_VERSION && ./Configure linux-armv4 --cross-compile-prefix=/usr/b
 # This env var configures rust-openssl to use the cross compiled version
 ENV OPENSSL_DIR=/opt/openssl-arm
 
-ENV ZLIB_VERSION=1.2.11
+ENV ZLIB_VERSION=1.2.13
 RUN echo "Building zlib" && \
     cd /tmp && \
-    curl -fLO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
+    curl -fLO "https://github.com/madler/zlib/releases/download/v$ZLIB_VERSION/zlib-$ZLIB_VERSION.tar.gz" && \
     tar xzf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
     CHOST=arm CC=/usr/bin/arm-linux-gnueabihf-gcc \
     AR=/usr/bin/arm-linux-gnueabihf-ar RANLIB=/usr/bin/arm-linux-gnueabihf-ranlib \
