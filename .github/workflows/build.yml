@@ -51,6 +51,10 @@ jobs:
       - name: Rename Node API file
         run: |
           mv ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine.so ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine_napi.so.node
+
+      - name: List files for verification
+        run: ls -la ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release
+
       - uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.event.inputs.tag }}
@@ -59,7 +63,5 @@ jobs:
           body: "Automatic release via CI: ${{ github.event.inputs.tag }}"
           artifacts: |
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query-engine,
-            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/prisma-fmt,
-            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/migration-engine,
-            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/introspection-engine,
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/schema-engine,
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine_napi.so.node
