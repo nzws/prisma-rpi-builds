@@ -37,7 +37,7 @@ jobs:
         run: |-
           cat <<EOF > Cross.toml
             [target.armv7-unknown-linux-gnueabihf]
-            image = "nzws/prisma-armv7-build-image:latest"
+            image = "ghcr.io/nzws/cargo-cross-image-linux-armv7:latest"
           EOF
 
       - name: List files for verification
