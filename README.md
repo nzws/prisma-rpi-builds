@@ -1,8 +1,9 @@
-### DEPRECATED
+# nzws/prisma-rpi-builds
 
-Raspberry Pi has released official 64 bit OS image now: https://www.raspberrypi.com/news/raspberry-pi-os-64-bit/
+This repository is a fork of https://github.com/pantharshit00/prisma-rpi-builds that is maintained in 2023.
+I also recommend using a 64bit RPi OS, but I built this binary for some environments where a clean install is not possible (like me).
 
-I will recommend everyone to upgrade to that now. This repository is no longer maintained.
+---
 
 ## Prisma precompiled builds for Raspberry Pi (armv7)
 
@@ -12,13 +13,13 @@ This repository contains precompiled [prisma-engines](https://github.com/prisma/
 
 (This mostly follows this documentation piece, please read this once: https://www.prisma.io/docs/concepts/components/prisma-engines#using-custom-engine-binaries)
 
-1. Download all 5 Engine files from this repository's GitHub releases page: https://github.com/pantharshit00/prisma-rpi-builds/releases
+1. Download all 3 Engine files from this repository's GitHub releases page: https://github.com/nzws/prisma-rpi-builds/releases
 2. Put all the downloaded files into a folder in your project
-3. Make sure all 4 binaries are executable using `chmod +x <binary path>`
-4. Set the following environment variables in your shell or in the `.env` file:
+3. Make sure all 2 binaries are executable using `chmod +x <binary path>`
+4. Set the following environment variables in your shell or in the `.env` file: (_edit: Due to changes on the Prisma, the required binaries are different than before_)
    ```sh
    PRISMA_QUERY_ENGINE_BINARY=/path/to/query-engine
-   PRISMA_QUERY_ENGINE_LIBRARY=/path/to/libquery_engine_napi.so
+   PRISMA_QUERY_ENGINE_LIBRARY=/path/to/libquery_engine_napi.so.node
    PRISMA_SCHEMA_ENGINE_BINARY=/path/to/schema-engine
    ```
 5. You are now ready to use Prisma on your Raspberry Pi.
